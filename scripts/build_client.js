@@ -3,7 +3,7 @@ var fs   = require('fs'),
 
 function stripExports(string) {
     var match = string.match(/\/\/ <browser>([\s\S]*)\/\/ <\/browser>/);
-    return match ? match[1] : string;
+    return (match ? match[1] : string).replace(/^\s*|\s*$/g, '');
 }
 
 function bundle(root) {
