@@ -196,6 +196,8 @@ pre {
     padding: 0.2em 0.5em;
 }
 
+.download { margin-top: 1em; }
+
 #ribbon {
     position: absolute;
     right: 0;
