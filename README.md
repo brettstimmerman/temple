@@ -2,12 +2,15 @@
 
 A [URI Template](http://www.rfc-editor.org/rfc/rfc6570.txt) processor.
 
+[http://brett.stimmerman.com/temple](http://brett.stimmerman.com/temple)
+
 ## Installation
 
     npm install temple
     
-For client-side use, download a client-side package and include it in your
-site.
+To use Temple in the browser, download a
+[client-side release](https://github.com/brettstimmerman/temple/downloads)
+and include it in your site.
 
 ## Usage
 
