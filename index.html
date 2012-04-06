@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <title>{temple}</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body class="index">
+    <div id="main">
+        <h1><a href="/temple">{temple}</a></h1>
+        <p class="byline">
+            A <a href="http://tools.ietf.org/html/rfc6570">URI Template</a>
+            processor.
+        </p>
+        <div class="nav">
+            <a href="/temple" class="nav">Installation and Usage</a>
+            <a href="/temple/testdrive" class="nav">Test Drive</a>
+        </div>
+        <div id="intro">
+            <h3>Installation</h3>
+            <pre>npm install temple</pre>
+            
+            <h3>Usage</h3>
+            <h4>Server</h4>
+<pre class="prettyprint">
+var Temple = require('temple');
+Temple.expand('{name}', {name: "Bob"});
+//=> Bob
+</pre>
+
+        <h4>Client <em>- 4k minified &amp; gzipped</em></h4>
+<pre class="client prettyprint">
+&lt;script href="temple-min.js">&lt;/script>
+&lt;script>
+  var tmpl = Temple.compile(
+    'http://example.com{/path}'
+  );
+    
+  tmpl({path: 'about'});
+  //=> http://www.example.com/about
+&lt;/script>
+</pre>
+        </div>
+    </div>
+    
+    <a href="https://github.com/brettstimmerman/temple" id="ribbon">
+        <img src="https://a248.e.akamai.net/assets.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67"
+            alt="Fork me on GitHub"/>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+    <title>{temple}</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+<body>
+    <div id="main">
+        <h1><a href="/temple">{temple}</a></h1>
+        <p class="byline">
+            A <a href="http://tools.ietf.org/html/rfc6570">URI Template</a>
+            processor.
+        </p>
+        <div class="nav">
+            <a href="/temple" class="nav">Installation and Usage</a>
+            <a href="/temple/testdrive" class="nav">Test Drive</a>
+        </div>
+        <div id="intro">
+            <h3>Test Drive</h3>
+            <p>
+                Enter a URI Template and some expansion variables
+                (the web demo requires JSON format)
+                in the fields below
+                then click the Expand button to see the result.
+            </p>
+            <p><a href="#" class="syntax">Show URI Template Syntax</a></p>
+        </div>
+    
+        <h3>URI Template</h3>
+        <form id="form">
+        <input id="template" type="text" value="example.com/~{name}">
+    
+        <h3>Expansion Variables</h3>
+        <textarea id="variables">{
+  "name": "Bob",
+  "age" : 27,
+  "beer": ["IPA", "Lager"],
+  "music": {
+    "70s": "Floyd",
+    "80s": "Crue"
+  },
+  "reserved": [";", "@", "$"]
+}</textarea>
+        <button id="expand">Expand</button>
+        </form>
+        <div id="errors" class="hidden"></div>
+        <div id="output" class="hidden"></div>
+    </div>
+    
+    <div id="syntax">
+        <h3>URI Template Syntax</h3>
+        <p>URI Templates may contain one or more expressions, and literal text.</p>
+        <p>
+            Expressions begin with a left brace <code>{</code>,
+            end with a right brace <code>}</code>,
+            and contain comma-separated variables and an optional operator.
+            Each variable can have an optional modifier.
+        </p>
+        <p>
+            For example, when expanding the template <code>{name}</code>
+            with <code>{name: "Bob"}</code>
+            the expanded text is simply <code>Bob</code>.
+        </p>
+        <p>
+            There's actually
+            <a href="http://tools.ietf.org/html/rfc6570" target="_blank">
+            a bit more to it than that</a>,
+            but those are the basics.
+            Read on for more in-depth examples.
+        </p>
+        <p class="hint">
+            <strong>Tip:</strong> Click the Expand button next to an example
+            to see its expansion in the test drive form.
+        </p>
+        <p><code>example.com/~{name}</code><button class="expand">Expand</button></p>
+        
+        <h3>Operators</h3>
+        <p>
+            Operators determine how variables in the expression will be expanded.
+            Expressions may only have one operator.
+        </p>
+        
+        <p class="hint">
+            <strong>Tip:</strong> Array and Object values are generally expanded
+            as comma-separated values.
+            The <a href="#explode">Explode Modifier</a> can change this behavior.
+        </p>
+        
+        <div class="example">
+            <h4>No Operator - Simple String Expansion</h4>
+            <p>
+                When no operator is specified,
+                expanded variables are separated by a comma <code>,</code>.
+            </p>
+            <p><code>{name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{name,music}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example" id="query">
+            <h4><code>?</code> Form-Style Query Expansion</h4>
+            <p>
+                Expanded variables are <em>named</em>
+                and separated by an ampersand <code>&amp;</code>.
+                The expansion is prefixed by a question-mark <code>?</code>.
+            </p>
+            <p><code>{?name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{?name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{?name,music}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example">
+            <h4><code>&amp;</code> Form-Style Query Continuation</h4>
+            <p>
+                Expanded variables are <em>named</em>
+                and separated by an ampersand.
+                The expansion is also prefixed by an ampersand.
+            </p>
+            <p><code>{&amp;name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{&amp;name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{&amp;name,music}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example">
+            <h4><code>;</code> Path-Style Parameter Expansion</h4>
+            <p>
+                Expanded variables are <em>named</em>
+                and separated by a semi-colon <code>;</code>.
+                The expansion is also prefixed by a semi-colon.
+            </p>
+            <p><code>{;name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{;name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{;name,music}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example">
+            <h4><code>/</code> Path Segment Expansion</h4>
+            <p>
+                Expanded variables are separated by a forward slash <code>/</code>.
+                The expansion is also prefixed by a forward slash.
+            </p>
+            <p><code>{/name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{/name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{/name,music}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example">
+            <h4><code>/</code> Fragment Expansion</h4>
+            <p>
+                Expanded variables are separated by a comma.
+                The expansion is prefixed by a fragment delimiter <code>#</code>.
+            </p>
+            <p><code>{#name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{#name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{#name,music}</code><button class="expand">Expand</button></p>
+        </div>
+        
+        <div class="example">
+            <h4><code>.</code> Label Expansion</h4>
+            <p>
+                Expanded variables are separated by a dot <code>.</code>.
+                The expansion is also prefixed by a dot.
+            </p>
+            <p><code>{.name,age}</code><button class="expand">Expand</button></p>
+            <p><code>{.name,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{.name,music}</code><button class="expand">Expand</button></p>
+        </div>
+        
+        <div class="example">
+            <h4><code>+</code> Reserved Expansion</h4>
+            <p>
+                Reserved characters are those not allowed literally in URIs,
+                or that otherwise have special meaning within URI Templates.
+                By default reserved characters are URL-encoded in the expansion.
+                The <code>+</code> operator disables this behavior.
+            </p>
+            <p><code>{reserved}</code><button class="expand">Expand</button></p>
+            <p><code>{+reserved}</code><button class="expand">Expand</button></p>
+        </div>
+        
+        <h3>Modifiers</h3>
+        <p>Modifiers change how variables appear in the expanded URI.</p>
+        
+        <div class="example">
+            <h4><code>:&lt;n&gt;</code> Prefix Modifier</h4>
+            <p>
+                Limits the expanded value
+                to the number of characters specified by <code>&lt;n&gt;</code>.
+                Prefix modifiers are ignored for Array and Object values.
+            </p>
+            <p><code>{name:1,age:1}</code><button class="expand">Expand</button></p>
+            <p><code>{name:10,beer:3}</code><button class="expand">Expand</button></p>
+            <p><code>{?name:1,music:3}</code><button class="expand">Expand</button></p>
+        </div>
+            
+        <div class="example" id="explode">
+            <h4><code>*</code> Explode Modifier</h4>
+            <p>
+                Explodes an Array or Object value into name-value pairs.
+                Arrays are exploded
+                for operators that would normally expand <em>named</em> variables
+                (such as the <a href="#query">Query Expansion modifier</a> <code>?</code>).
+                Objects are exploded regardless of operator type.
+            </p>
+            <p><code>{name,age,beer}</code><button class="expand">Expand</button></p>
+            <p><code>{name,age,beer*}</code><button class="expand">Expand</button></p>
+            <p><code>{?name,age,beer*}</code><button class="expand">Expand</button></p>
+            <p><code>{name,age,music}</code><button class="expand">Expand</button></p>
+            <p><code>{name,age,music*}</code><button class="expand">Expand</button></p>
+            <p><code>{/name,age,music*}</code><button class="expand">Expand</button></p>
+        </div>
+        
+    </div>
+    
+    <a href="https://github.com/brettstimmerman/temple" id="ribbon">
+        <img src="https://a248.e.akamai.net/assets.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67"
+            alt="Fork me on GitHub"/>
+    </a>
+    
+    <script src="../temple-min.js"></script>
+    <script>
+    (function () {
+        function el(id) {
+            return document.getElementById(id);
+        }
+        
+        var button    = el('expand'),
+            errors    = el('errors'),
+            output    = el('output'),
+            syntax    = el('syntax'),
+            template  = el('template'),
+            variables = el('variables'),
+
+            decoder = document.createElement('textarea'),
+            
+            body     = document.body,
+            buttons  = [].slice.call(document.getElementsByClassName('expand')),
+            demoVars = variables.value,
+            
+            syntaxToggle = document.getElementsByClassName('syntax')[0],
+            
+            tmpl, expand, vars;
+            
+        function decode(html) {
+            decoder.innerHTML = html;
+            return decoder.value;
+        }
+            
+        button.onclick = expand = function (e) {
+            e && e.preventDefault();
+            
+            try {
+                vars = JSON.parse(variables.value.length ? variables.value : '{}');
+            } catch (e) {
+                errors.innerHTML = "Variable error:<br/>" + e.message.replace(/\n/g, '<br/>');
+                errors.className = '';
+                output.className = 'hidden';
+                return;
+            }
+            
+            try {
+                output.innerHTML = Temple.expand(template.value, vars);
+                output.className = '';
+                errors.className = 'hidden';
+            } catch (e) {
+                output.className = 'hidden';
+                errors.innerHTML = "Template error:<br/>" + e.message.replace(/\n/g, '<br/>');
+                errors.className = '';
+            }
+        };
+        
+        for (var i = 0, len = buttons.length; i < len; ++i) {
+            tmpl = buttons[i].previousSibling.innerHTML;
+            
+            buttons[i].onclick = (function (tmpl) {
+                tmpl = decode(tmpl);
+                
+                return function (e) {
+                    e.preventDefault();
+                    template.value  = tmpl;
+                    variables.value = demoVars;
+                    expand();
+                }
+            }(tmpl));
+        }
+        
+        syntaxToggle.onclick = function (e) {
+            e.preventDefault();
+            
+            var el = e.target;
+            
+            if (body.className) {
+                body.className = '';
+                el.innerHTML = el.innerHTML.replace('Hide', 'Show');
+            } else {
+                body.className = 'open';
+                el.innerHTML = el.innerHTML.replace('Show', 'Hide');
+            }
+        };
+    }());
+    </script>
+</body>
+</html>
