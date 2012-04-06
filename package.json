@@ -1,0 +1,21 @@
+{
+    "name": "temple",
+    "description": "A URI Template processor",
+    "version": "0.0.1",
+    "keywords": ["uri", "url", "template", "templates"],
+    "author": "Brett Stimmerman <brettstimmerman@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url" : "https://github.com/brettstimmerman/temple.git"
+    },
+    "bugs": {
+        "url": "http://github.com/brettstimmerman/temple/issues"
+    },
+    "main": "./lib/temple",
+    "engines": { "node": ">= 0.4.x" },
+    "devDependencies": {
+        "jison"    : "0.3.x",
+        "mocha"    : "1.0.x",
+        "uglify-js": "1.2.x"
+    }
+}
