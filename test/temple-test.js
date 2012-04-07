@@ -286,8 +286,19 @@ describe('Temple', function () {
         var tests = [
             '{{}',
             '}',
+            '{',
+            'x{',
+            'list}',
+            
             '{x*y}',
             '{list*y}',
+            
+            '{who,}',
+            '{,who}',
+            '{who:}',
+            '{who:0}',
+            '{who:12345}',
+
             '{&bool_keys:3*}',
             '{&bool_keys*:3}'
         ];

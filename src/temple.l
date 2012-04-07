@@ -1,6 +1,6 @@
-LITERAL     [^{]+
+LITERAL     [^{}]+
 OPERATOR    [\?\/\.;&#+]
-PREFIX      \:\d+
+PREFIX      \:[1-9](?:[0-9]{1,3})?
 VARIABLE    [a-zA-Z0-9_]+
 
 %s expression
