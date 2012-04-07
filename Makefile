@@ -29,6 +29,6 @@ lint:
 		@jshint .
 
 test:
-		@mocha -R spec
+		@mocha
 
 .PHONY: test
