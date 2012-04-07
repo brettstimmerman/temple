@@ -33,14 +33,14 @@ var assert = require('assert'),
 
 function runTests(tests) {
     Temple.Object.each(tests, function (value, key) {
-        it(key, function () {
+        it('"' + key + '"', function () {
             assert.equal(Temple.expand(key, vars), value);
         });
     });
 }
 
 describe('Temple', function () {
-    it('3.2.1. Variable Expansion', function () {
+    describe('3.2.1. Variable Expansion', function () {
         var tests = {
             '{count}': 'one,two,three',
             '{count*}': 'one,two,three',
@@ -57,7 +57,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('3.2.2. Simple String Expansion', function () {
+    describe('3.2.2. Simple String Expansion', function () {
         var tests = {
             '{empty}': '',
             '{undef}': '',
@@ -83,7 +83,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('3.2.3. Reserved Expansion', function () {
+    describe('3.2.3. Reserved Expansion', function () {
         var tests = {
             '{+empty}': '',
             '{+undef}': '',
@@ -112,7 +112,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('3.2.4. Fragment Expansion', function () {
+    describe('3.2.4. Fragment Expansion', function () {
         var tests = {
             '{#var}': '#value',
             '{#hello}': '#Hello%20World!',
@@ -131,7 +131,7 @@ describe('Temple', function () {
         runTests();
     });
     
-    it('3.2.5. Label Expansion with Dot-Prefix', function () {
+    describe('3.2.5. Label Expansion with Dot-Prefix', function () {
         var tests = {
             '{.who}': '.fred',
             '{.who,who}': '.fred.fred',
@@ -152,7 +152,7 @@ describe('Temple', function () {
         runTests(tests);
     });
 
-    it('3.2.6. Path Segment Expansion', function () {
+    describe('3.2.6. Path Segment Expansion', function () {
         var tests = {
             '{/empty}': '/',
             '{/undef}': '',
@@ -175,7 +175,7 @@ describe('Temple', function () {
         runTests(tests);
     });
 
-    it('3.2.7. Path-Style Parameter Expansion', function () {
+    describe('3.2.7. Path-Style Parameter Expansion', function () {
         var tests = {
             '{;undef}': '',
             '{;who}': ';who=fred',
@@ -194,7 +194,7 @@ describe('Temple', function () {
         };
     });
 
-    it('3.2.8. Form-Style Query Expansion', function () {
+    describe('3.2.8. Form-Style Query Expansion', function () {
         var tests = {
             '{?empty}': '?empty=',
             '{?undef}': '',
@@ -213,7 +213,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('3.2.9. Form-Style Query Continuation', function () {
+    describe('3.2.9. Form-Style Query Continuation', function () {
         var tests = {
             '{&empty}': '&empty=',
             '{&undef}': '',
@@ -233,7 +233,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('X.1.   Prefix Modifiers and Non-String Values', function () {
+    describe('X.1.   Prefix Modifiers and Non-String Values', function () {
         var tests = {
             '{&list:3}': '&list=red,green,blue',
             '{&bool_keys:3}': '&bool_keys=true,true,false,false',
@@ -249,7 +249,7 @@ describe('Temple', function () {
         runTests(tests);
     });
 
-    it('X.2.   Unicode', function () {
+    describe('X.2.   Unicode', function () {
         var tests = {
             'http://➡.com/{?unicode}': 'http://➡.com/?unicode=%E7%AB%9C'
         };
@@ -257,7 +257,7 @@ describe('Temple', function () {
         runTests(tests);
     });
 
-    it('X.3.   Percent Encoding', function () {
+    describe('X.3.   Percent Encoding', function () {
         var tests = {
             'http%3A%2F%2Fexample.com{?pct}': 'http%3A%2F%2Fexample.com?pct=hello%20world',
 
@@ -267,7 +267,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it('X.4.   Miscellany', function () {
+    describe('X.4.   Miscellany', function () {
         var tests = {
             '': '',
             ',': ',',
@@ -282,7 +282,7 @@ describe('Temple', function () {
         runTests(tests);
     });
     
-    it ('X.5.   Exceptions', function () {
+    describe('X.5.   Exceptions', function () {
         var tests = [
             '{{}',
             '}',
@@ -293,8 +293,10 @@ describe('Temple', function () {
         ];
         
         Temple.Array.each(tests, function (value) {
-            assert.throws(function () {
-                Temple.expand(value, vars);
+            it('"' + value + '"', function () {
+                assert.throws(function () {
+                    Temple.expand(value, vars);
+                });
             });
         });
     });
