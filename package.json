@@ -17,5 +17,8 @@
         "jison"    : "0.3.x",
         "mocha"    : "1.0.x",
         "uglify-js": "1.2.x"
+    },
+    "scripts": {
+        "test": "mocha -R spec"
     }
 }

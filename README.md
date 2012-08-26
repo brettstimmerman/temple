@@ -4,6 +4,8 @@ A [URI Template](http://www.rfc-editor.org/rfc/rfc6570.txt) processor.
 
 [http://brett.stimmerman.com/temple](http://brett.stimmerman.com/temple)
 
+[![Build Status](https://secure.travis-ci.org/brettstimmerman/temple.png?branch=master)](http://travis-ci.org/brettstimmerman/temple)
+
 ## Installation
 
     npm install temple
