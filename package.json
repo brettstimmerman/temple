@@ -1,7 +1,7 @@
 {
     "name": "temple",
     "description": "A URI Template processor",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "keywords": ["uri", "url", "template", "templates"],
     "author": "Brett Stimmerman <brettstimmerman@gmail.com>",
     "repository": {
