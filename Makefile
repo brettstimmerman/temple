@@ -4,14 +4,19 @@ GRAMMAR    = src/temple.y
 LEXER      = src/temple.l
 PARSER     = lib/temple/parser.js
 
+JISON  = node_modules/.bin/jison
+JSHINT = node_modules/.bin/jshint
+MOCHA  = node_modules/.bin/mocha
+UGLIFY = node_modules/.bin/uglifyjs
+
 all: parser client
 
 parser:
-		@jison $(GRAMMAR) $(LEXER) -m commonjs
+		@$(JISON) $(GRAMMAR) $(LEXER) -m commonjs
 		@mv temple.js $(PARSER)
 
 parser-client:
-		@jison $(GRAMMAR) $(LEXER) -m js
+		@$(JISON) $(GRAMMAR) $(LEXER) -m js
 		@mv temple.js $(PARSER).client
 
 clean:
@@ -19,16 +24,16 @@ clean:
 
 client: parser-client
 		@node scripts/build_client.js > $(CLIENT)
-		@cat $(CLIENT) | uglifyjs > $(CLIENT_MIN)
+		@$(UGLIFY) $(CLIENT) -o $(CLIENT_MIN)
 
 size: client
 		@cat $(CLIENT_MIN) | wc -c
 		@gzip -c6 $(CLIENT_MIN) | wc -c
 
 lint:
-		@jshint .
+		@$(JSHINT) .
 
 test:
-		@mocha
+		@$(MOCHA)
 
 .PHONY: test
