@@ -1,4 +1,5 @@
 .DS_Store
 lib/temple/parser.js
 lib/temple/parser.js.client
-release
+release/
+node_modules/
