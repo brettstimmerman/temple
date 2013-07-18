@@ -31,7 +31,7 @@ size: client
 		@gzip -c6 $(CLIENT_MIN) | wc -c
 
 lint:
-		@$(JSHINT) .
+		@$(JSHINT) --show-non-errors **/*.js
 
 test:
 		@$(MOCHA)
