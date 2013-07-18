@@ -22,22 +22,22 @@ statement
     | LBRACE operator variable-list RBRACE
         { $$ = new yy.ExpressionNode($3, $2); }
     ;
-    
+
 operator
     :
     | OPERATOR { $$ = $1; }
     ;
-    
+
 variable-list
     : variable { $$ = [$1]; }
     | variable-list ',' variable { $1.push($3); $$ = $1; }
     ;
-    
+
 variable
     : VARIABLE modifier { $$ = new yy.VariableNode($1, $2); }
     | VARIABLE error '}'
     ;
-    
+
 modifier
     :
     | '*' { $$ = $1; }

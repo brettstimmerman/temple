@@ -13,12 +13,12 @@ function bundle(root) {
         ],
         lib = '/lib/temple/',
         out = '';
-    
+
     files.forEach(function (file) {
         file = fs.readFileSync(path.join(root, lib, file), 'utf-8');
         out += stripExports(file);
     });
-    
+
     console.log(out);
 }
 

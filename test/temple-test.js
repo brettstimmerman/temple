@@ -20,7 +20,7 @@ var assert = require('assert'),
         empty: '',
         empty_keys: [],
         undef: null,
-    
+
         // Other variables.
         'true'   : true,
         'false'  : false,
@@ -56,7 +56,7 @@ describe('Temple', function () {
 
         runTests(tests);
     });
-    
+
     describe('3.2.2. Simple String Expansion', function () {
         var tests = {
             '{empty}': '',
@@ -79,10 +79,10 @@ describe('Temple', function () {
             '{keys}': 'semi,%3B,dot,.,comma,%2C',
             '{keys*}': 'semi=%3B,dot=.,comma=%2C'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('3.2.3. Reserved Expansion', function () {
         var tests = {
             '{+empty}': '',
@@ -108,10 +108,10 @@ describe('Temple', function () {
             '{+keys}': 'semi,;,dot,.,comma,,',
             '{+keys*}': 'semi=;,dot=.,comma=,'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('3.2.4. Fragment Expansion', function () {
         var tests = {
             '{#var}': '#value',
@@ -127,10 +127,10 @@ describe('Temple', function () {
             '{#keys}': '#semi,;,dot,.,comma,,',
             '{#keys*}': '#semi=;,dot=.,comma=,'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('3.2.5. Label Expansion with Dot-Prefix', function () {
         var tests = {
             '{.who}': '.fred',
@@ -148,7 +148,7 @@ describe('Temple', function () {
             'X{.empty_keys}': 'X',
             'X{.empty_keys*}': 'X'
         };
-        
+
         runTests(tests);
     });
 
@@ -171,7 +171,7 @@ describe('Temple', function () {
             '{/keys}': '/semi,%3B,dot,.,comma,%2C',
             '{/keys*}': '/semi=%3B/dot=./comma=%2C'
         };
-        
+
         runTests(tests);
     });
 
@@ -211,10 +211,10 @@ describe('Temple', function () {
             '{?keys}': '?keys=semi,%3B,dot,.,comma,%2C',
             '{?keys*}': '?semi=%3B&dot=.&comma=%2C'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('3.2.9. Form-Style Query Continuation', function () {
         var tests = {
             '{&empty}': '&empty=',
@@ -231,10 +231,10 @@ describe('Temple', function () {
             '{&keys}': '&keys=semi,%3B,dot,.,comma,%2C',
             '{&keys*}': '&semi=%3B&dot=.&comma=%2C'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('X.1.   Prefix Modifiers and Non-String Values', function () {
         var tests = {
             '{&list:3}': '&list=red,green,blue',
@@ -247,7 +247,7 @@ describe('Temple', function () {
             '{?bool_keys}': '?bool_keys=true,true,false,false',
             '{;bool_keys*}': ';true=true;false=false'
         };
-        
+
         runTests(tests);
     });
 
@@ -255,7 +255,7 @@ describe('Temple', function () {
         var tests = {
             'http://➡.com/{?unicode}': 'http://➡.com/?unicode=%E7%AB%9C'
         };
-        
+
         runTests(tests);
     });
 
@@ -265,10 +265,10 @@ describe('Temple', function () {
 
             '{?pct_key*}': '?20%25=0.2'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('X.4.   Miscellany', function () {
         var tests = {
             '': '',
@@ -280,10 +280,10 @@ describe('Temple', function () {
             '<buzz>{who}</buzz>': '%3Cbuzz%3Efred%3C/buzz%3E',
             '^H': '%5EH'
         };
-        
+
         runTests(tests);
     });
-    
+
     describe('X.5.   Exceptions', function () {
         var tests = [
             '{{}',
@@ -291,10 +291,10 @@ describe('Temple', function () {
             '{',
             'x{',
             'list}',
-            
+
             '{x*y}',
             '{list*y}',
-            
+
             '{who,}',
             '{,who}',
             '{who:}',
@@ -304,7 +304,7 @@ describe('Temple', function () {
             '{&bool_keys:3*}',
             '{&bool_keys*:3}'
         ];
-        
+
         Temple.Array.each(tests, function (value) {
             it('"' + value + '"', function () {
                 assert.throws(function () {
