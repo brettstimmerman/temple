@@ -128,7 +128,7 @@ describe('Temple', function () {
             '{#keys*}': '#semi=;,dot=.,comma=,'
         };
         
-        runTests();
+        runTests(tests);
     });
     
     describe('3.2.5. Label Expansion with Dot-Prefix', function () {
@@ -192,6 +192,8 @@ describe('Temple', function () {
             '{;keys}': ';keys=semi,%3B,dot,.,comma,%2C',
             '{;keys*}': ';semi=%3B;dot=.;comma=%2C'
         };
+
+        runTests(tests);
     });
 
     describe('3.2.8. Form-Style Query Expansion', function () {

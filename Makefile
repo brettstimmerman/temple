@@ -33,7 +33,7 @@ size: client
 lint:
 		@$(JSHINT) --show-non-errors **/*.js
 
-test:
-		@$(MOCHA)
+test: parser
+		@$(MOCHA) --reporter spec
 
 .PHONY: test
