@@ -20,9 +20,10 @@ parser-client:
 		@mv temple.js $(PARSER).client
 
 clean:
-		rm -f $(PARSER) $(PARSER).client release/*
+		rm -rf $(PARSER) $(PARSER).client release
 
 client: parser-client
+		@mkdir -p release
 		@node scripts/build_client.js > $(CLIENT)
 		@$(UGLIFY) $(CLIENT) -o $(CLIENT_MIN)
 
