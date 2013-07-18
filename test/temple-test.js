@@ -33,7 +33,7 @@ var assert = require('assert'),
 
 function runTests(tests) {
     Temple.Object.each(tests, function (value, key) {
-        it('"' + key + '"', function () {
+        it('"' + key.replace(/\n/g, '\\n') + '"', function () {
             assert.equal(Temple.expand(key, vars), value);
         });
     });
