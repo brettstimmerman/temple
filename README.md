@@ -1,10 +1,6 @@
-# Temple
+# Temple [![Build Status](https://secure.travis-ci.org/brettstimmerman/temple.png?branch=master)](http://travis-ci.org/brettstimmerman/temple)
 
 A [URI Template](http://www.rfc-editor.org/rfc/rfc6570.txt) processor.
-
-[http://brett.stimmerman.com/temple](http://brett.stimmerman.com/temple)
-
-[![Build Status](https://secure.travis-ci.org/brettstimmerman/temple.png?branch=master)](http://travis-ci.org/brettstimmerman/temple)
 
 ## Installation
 
@@ -22,12 +18,14 @@ site (5k gzipped):
 
 ```javascript
 var Temple = require('temple');
+
 Temple.expand('/search{?q,page}', {q: 'uri templates', page: 1});
 //=> /search?q=uri%20templates&page=1
 ```
 
 ```html
 <script src="temple-min.js"></script>
+
 <script>
 Temple.expand('{/path}', {path: ['user', 'edit', 6346]});
 //=> /user/edit/6346
