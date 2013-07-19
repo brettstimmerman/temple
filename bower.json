@@ -1,0 +1,22 @@
+{
+  "name": "temple",
+  "description": "A URI Template processor",
+  "main": "index.js",
+  "version": "0.1.0-git",
+  "ignore": [
+    "lib",
+    "release",
+    "scripts",
+    "src",
+    "test",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    ".npmignore",
+    ".travis.yml",
+    "HISTORY.md",
+    "Makefile",
+    "package.json",
+    "temple.js"
+  ]
+}
