@@ -16,7 +16,7 @@ function bundle(root) {
 
     files.forEach(function (file) {
         file = fs.readFileSync(path.join(root, lib, file), 'utf-8');
-        out += stripExports(file);
+        out += stripExports(file) + '\n\n';
     });
 
     console.log(out);
