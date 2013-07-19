@@ -20,7 +20,10 @@ parser-client:
 		@mv temple.js $(PARSER).client
 
 clean:
-		rm -rf $(PARSER) $(PARSER).client release
+		rm -rf release
+		rm -rf index.js
+		rm -rf $(PARSER)
+		rm -rf $(PARSER).client
 
 client: parser-client
 		@mkdir -p release
@@ -36,5 +39,8 @@ lint:
 
 test: parser
 		@$(MOCHA) --reporter spec
+
+bower: client
+		@cp $(CLIENT) index.js
 
 .PHONY: test

@@ -2,3 +2,4 @@ lib/temple/parser.js
 lib/temple/parser.js.client
 release
 node_modules
+index.js
