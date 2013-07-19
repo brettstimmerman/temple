@@ -1,9 +1,11 @@
-.DS_Store
-.gitignore
-.jshintignore
-.jshintrc
-Makefile
-lib/temple/parser.js.client
 release
 scripts
 src
+test
+.gitignore
+.jshintignore
+.jshintrc
+.travis.yml
+bower.json
+Makefile
+lib/temple/parser.js.client
