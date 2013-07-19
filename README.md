@@ -11,7 +11,7 @@ npm install temple
 ```
 
 To use Temple in the browser, download the client build and include it in your
-site (5k gzipped):
+site (5.7k gzipped):
 [temple-min.js](http://brett.stimmerman.com/temple/temple-min.js).
 
 ## Usage
